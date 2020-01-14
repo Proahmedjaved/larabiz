@@ -14,8 +14,10 @@
                     </div>
                     @endif
 
-                    <h1>Listings</h1>
+                <h1>Listings <span><a class="btn btn-primary float-right" href="/listings/create" role="button" >Create Listing</a></span> </h1>
                     <h3>Companies</h3>
+
+
 
                     @if (count($listings))
 

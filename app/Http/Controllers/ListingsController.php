@@ -62,7 +62,7 @@ class ListingsController extends Controller
 
             $listing->save();
 
-            return redirect()->action('HomeController@index');
+            return redirect()->action('HomeController@index')->with('success', 'New Listing Created');
 
     }
     /**

@@ -26,9 +26,17 @@ class HomeController extends Controller
     {
         $userId = auth()->user()->id;
 
-        $user = User::find($userId);
+        if ($userId){
 
-        return view('home')->with('listings', $user->listing);
+            $user = User::find($userId);
+
+            return view('home')->with('listings', $user->listing);
+
+        } else {
+            return view('auth/login');
+        }
+
+
 
     }
 }

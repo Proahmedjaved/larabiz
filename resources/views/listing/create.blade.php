@@ -31,7 +31,7 @@
                 </div>
                 <div class="form-group">
                   <label>Bio</label>
-                  <textarea type="textarea" class="form-control" placeholder="Something about your company" name="bio"></textarea>
+                  <textarea type="textarea" class="form-control" placeholder="Something about your company" name="bio" required></textarea>
                 </div>
                 {{-- <div class="form-group">
                     <input type="hidden" name="_method" value="PUT"/>
