@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Listing;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,12 @@ class ListingsController extends Controller
      */
     public function create()
     {
-        return view('listing/create');
+        if (auth()->user()) {
+            return view('listing/create');
+        } else {
+            return view('auth/login');
+        }
+
     }
 
     /**
@@ -36,9 +42,29 @@ class ListingsController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        // $this->request->validate([
+        //     'name'=>'required',
+        //     'email'=>'required',
+        //     'address'=>'required',
+        //     'phone'=>'required',
+        //     'bio'=>'required',
+        // ]);
 
+            $userid = auth()->user()->id;
+
+            $listing = new Listing;
+            $listing->user_id = $userid;
+            $listing->name = $request->name;
+            $listing->email = $request->email;
+            $listing->address = $request->address;
+            $listing->phone = $request->phone;
+            $listing->bio = $request->bio;
+
+            $listing->save();
+
+            return redirect()->action('HomeController@index');
+
+    }
     /**
      * Display the specified resource.
      *
