@@ -14,7 +14,8 @@
                     </div>
                     @endif
 
-                <h1>Listings <span><a class="btn btn-primary float-right" href="/listings/create" role="button" >Create Listing</a></span> </h1>
+                    <h1>Listings <span><a class="btn btn-primary float-right" href="/listings/create"
+                                role="button">Create Listing</a></span> </h1>
                     <h3>Companies</h3>
 
 
@@ -24,15 +25,30 @@
                     @foreach ($listings as $listing)
 
                     <div class="card">
-                        <div class="card-header">{{ $listing->name }}</div>
-                            <div class="card-body">
-                                <ul>
+                        <div class="card-header">
+                            <h3 class="d-inline">{{ $listing->name }}</h3>
+                            <span>
+                                <form action="{{ route('listings.destroy', $listing->id)}}" class="d-inline" method="POST">
+                                    {{csrf_field()}}
+                                    <button type="submit"
+                                        class="btn btn-outline-danger float-right ml-2">Delete</button>
+                                    <input type="hidden" name="_method" value="DELETE">
+                                </form>
+
+                            </span>
+                            <span><a href="/listings/{{ $listing->id }}/edit"
+                                    class="btn btn-outline-secondary float-right" role="button">Edit</a></span>
+                        </div>
+
+                        <div class="card-body">
+                            <ul>
                                 <li>{{ $listing->address }}</li>
                                 <li>{{ $listing->phone }}</li>
                                 <li>{{ $listing->email }}</li>
-                                </ul>
+                            </ul>
                             <p>{{ $listing->bio }}</p>
-                            </div>
+                        </div>
+
                     </div>
 
                     <br>
